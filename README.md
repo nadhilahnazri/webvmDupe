@@ -33,9 +33,7 @@ Each game is written in Python and can be run inside the WebVM terminal.
 
 To get started with our WebVM terminal games, follow these steps:
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-repo/madani-webvm-terminal-games.git
+1. Clone the repository
 
 2. Run http server:
    ```bash
