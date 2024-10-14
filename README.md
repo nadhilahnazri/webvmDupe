@@ -40,9 +40,12 @@ To get started with our WebVM terminal games, follow these steps:
 2. Run http server:
    ```bash
    nginx -c nginx.conf -p .
+   
 3. Open your preferred browser (preferably Chrome) and type:
    ```bash
    localhost:8081
+   
+4. To start the game, type **start**.
    
 ## Why Use WebVM for Gaming?
 
