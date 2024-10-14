@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=1100, initial-scale=1.0">
-    <title>WebVM - Linux virtualization in WebAssembly</title>
+    <title>Madani Game Simulator</title>
 
     <meta name="description" content="Server-less virtual machine, networking included, running browser-side in HTML5/WebAssembly. Code in any programming language inside this Linux terminal.">
     <meta name="keywords" content="WebVM, Virtual Machine, CheerpX, x86 virtualization, WebAssembly, Tailscale, JIT">
@@ -30,10 +30,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" id="us-fonts-css" href="https://fonts.googleapis.com/css?family=Montserrat%3A300%2C400%2C500%2C600%2C700&amp;display=swap&amp;ver=6.0.2" media="all">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css" />
     <link rel="stylesheet" href="./xterm/xterm.css" />
     <link rel="stylesheet" href="./scrollbar.css" />
-    <style>.github-fork-ribbon:before { background-color: #ea1e69; }</style>
     <!-- Serviceworker script that adds the COI and CORS headers to the response headers in cases where the server does not support it. -->
     <script src="serviceWorker.js"></script>
     <script src="./xterm/xterm.js"></script>
@@ -44,41 +42,8 @@
   </head>
 
   <body style="margin:0;height:100%;background:black;color:white;overflow:hidden; display:flex; flex-direction: column; justify-content: space-between; height: 100%;">
-    <a class="github-fork-ribbon right-bottom" href="https://github.com/leaningtech/webvm/" target="_blank" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
     <div>
-      <div style="padding-top: 0.7em;padding-bottom: 0.7em;font-size: 0.3em; font-weight: 200;vertical-align:center;height: 120px;">
-        <div style="margin-left: 20px; height: 100%; display: flex; align-items: center; justify-content: space-between;">
-          <pre style="font-family: monospace; font-weight: 600; font-size: large; color: #ad7fa8;">
-
-__      __   _  __   ____  __
-\ \    / /__| |_\ \ / /  \/  |
- \ \/\/ / -_) '_ \ V /| |\/| |
-  \_/\_/\___|_.__/\_/ |_|  |_|
-          </pre>
-          <div style="height:100%;display: flex; flex-direction: column;justify-content: space-between;">
-            <div style="padding-top: 0.7em;font-size: 0.3em; font-weight: 200;vertical-align:center;height:50px;">
-              <div style="margin-right: 10px; margin-left: 20px; height: 100%; display: flex; align-items: center; justify-content: flex-end;gap: 50px;">
-                  <div style="padding-top: 0.7em;font-size: 0.3em; font-weight: 200;vertical-align:center;">
-                    <a href="https://leaningtech.com" style="text-decoration: none; height: 100%;" target="_blank">
-                      <div style="color: white; font-family: montserrat; font-weight: 400; font-size: large; height: 100%; display: flex; align-items: center;">
-                        <span>Made with &#10084;&#65039; by </span>
-                        <img src="assets/leaningtech.png" height="40px" style="margin-left: 5px;">
-                      </div>
-                    </a>
-                  </div>
-              </div>
-            </div>
-            <div style="padding-top: 0.7em;font-size: 0.3em; font-weight: 200;vertical-align:center;height:50px;">
-              <div style="margin-right: 10px; margin-left: 20px; height: 100%; display: flex; align-items: center; justify-content: flex-end;gap: 50px;">
-                <div style="color: white; font-family: montserrat; font-weight: 400; font-size: large; height: 100%; display: flex; align-items: center;">
-                  <span>CPU </span>
-                  <span id="cpuactivity" style="margin-left: 7px;">&#x1F7E2;</span>
-                </div>
-                <div style="color: white; font-family: montserrat; font-weight: 400; font-size: large; height: 100%; display: flex; align-items: center;">
-                  <span>HDD </span>
-                  <span id="hddactivity" style="margin-left: 7px;">&#x1F7E2;</span>
-                </div>
-		<a id="loginLink" style="user-select: text ;text-decoration: none; height: 100%;">
+		<a hidden id="loginLink" style="user-select: text ;text-decoration: none; height: 100%;">
 		  <div  style="color: white; font-family: montserrat; font-weight: 400; font-size: large; height: 100%; display: flex; align-items: center;">
                     <div style="position: relative;">
 	              <span style="cursor: pointer" id="networkStatus">Connect via Tailscale </span>
@@ -87,29 +52,17 @@ __      __   _  __   ____  __
 	            <img src="assets/tailscale.svg" height="35px" style="margin-left: 7px;">
 		  </div>
 		</a>
-                <a href="https://discord.gg/yTNZgySKGa" style="text-decoration: none; height: 100%;" target="_blank">
-                  <div style="color: white; font-family: montserrat; font-weight: 400; font-size: large; height: 100%; display: flex; align-items: center;">
-                    <span>Join Discord </span>
-                    <img src="assets/discord-mark-blue.svg" height="35px" style="margin-left: 7px;">
-                  </div>
-                </a>
-                <a href="https://github.com/leaningtech/webvm/issues" style="text-decoration: none; height: 100%;" target="_blank">
-                  <div style="color: white; font-family: montserrat; font-weight: 400; font-size: large; height: 100%; display: flex; align-items: center;">
-                    <span>GitHub Issues </span>
-                    <img src="assets/github-mark-white.svg" height="35px" style="margin-left: 5px;">
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-    <div style="flex-grow:0; flex-shrink: 0; height:1px; width: 100%; background-color: white;">
-    </div>
+	<div style="padding:15px; display: flex; flex-direction: column;">
+		<a> ------------------------- </a>
+		<a style="padding-left: 15px;"> Madani Game Simulator </a>
+		<a> ------------------------- </a>
+	</div>
+
     <main style="display: flex; flex-direction: row; justify-content: space-between; margin: 5px; height: 100%;">
-      <div style="flex-grow:1; height:100%;display:inline-block;margin:0;" class="scrollbar" id="console">
-      </div>
+    	<div style="flex-grow:1; height:100%;display:inline-block;margin:0;" class="scrollbar" id="console">
+    
+		</div>
 
     </main>
     <script>
@@ -122,37 +75,7 @@ __      __   _  __   ____  __
 	var printOnTerm = {
 		getAsciiText: function ()
 		{
-			var text = [
-				"+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+",
-				"|                                                                             |",
-				"| WebVM is a server-less virtual Linux environment running fully client-side  |",
-				"| in HTML5/WebAssembly.                                                       |",
-				"|                                                                             |",
-				"| WebVM is powered by the CheerpX virtualization engine, which enables safe,  |",
-				"| sandboxed client-side execution of x86 binaries on any browser.             |",
-				"|                                                                             |",
-				"| CheerpX includes an x86-to-WebAssembly JIT compiler, a virtual block-based  |",
-				"| file system, and a Linux syscall emulator.                                  |",
-				"|                                                                             |",
-				"| Your own WebVM with custom images via Dockerfile:                           |",
-				"|                                                                             |",
-				"| " + underline + "https://leaningtech.com/mini-webvm-your-linux-box-from-dockerfile-via-wasm" + normal +"  |",
-				"|                                                                             |",
-				"| Join WebVM: The Hackathon (11-14 October 2024)                              |",
-				"|                                                                             |",
-				"| " + underline + "https://cheerpx.io/hackathon" + normal + "                                                |",
-				"|                                                                             |",
-				"+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+",
-				"",
-				"   Welcome to WebVM. If unsure, try these examples:",
-				"",
-				"     python3 examples/python3/fibonacci.py ",
-				"     gcc -o helloworld examples/c/helloworld.c && ./helloworld",
-				"     objdump -d ./helloworld | less -M",
-				"     vim examples/c/helloworld.c",
-				"     curl --max-time 15 parrot.live  # requires networking",
-				"",
-				];
+			var text = [];
 			return text;
 		},
 		getSharedArrayBufferMissingMessage: function ()
@@ -244,40 +167,17 @@ __      __   _  __   ____  __
 	}
 	term.onData(readData);
 
-	function hddCallback(state)
-	{
-		var h = document.getElementById("hddactivity");
-		if(state == "ready")
-			h.textContent = "\u{1F7E2}";
-		else
-			h.textContent = "\u{1F7E0}";
-	}
-	function cpuCallback(state)
-	{
-		var h = document.getElementById("cpuactivity");
-		if(state == "ready")
-			h.textContent = "\u{1F7E2}";
-		else
-			h.textContent = "\u{1F7E0}";
-	}
 
 	//Actual CheerpX and bash specific logic
 	async function runBash()
 	{
-		// cmd, cwd, args and env are replaced by the Github actions workflow.
-		var cmd = CMD;
-		var args = ARGS;
-		var env = ENV;
-		var cwd = CWD;
-		var device_type = DEVICE_TYPE;
-		var image_url = IMAGE_URL;
 		// Reasonable defaults for local deployments
-		// var cmd = "/bin/bash";
-		// var args = ["--login"];
-		// var env = ["HOME=/home/user", "TERM=xterm", "USER=user", "SHELL=/bin/bash", "EDITOR=vim", "LANG=en_US.UTF-8", "LC_ALL=C"];
-		// var cwd = "/home/user";
-		// var device_type = "bytes";
-		// var image_url = "/your_local_image.ext2";
+		var cmd = "/bin/bash";
+		var args = ["--login"];
+		var env = ["HOME=/home/user", "TERM=xterm", "USER=user", "SHELL=/bin/bash", "EDITOR=vim", "LANG=en_US.UTF-8", "LC_ALL=C"];
+		var cwd = "/home/user/examples";
+		var device_type = "bytes";
+		var image_url = "/debian_mini.ext2";
 		const structure = {
 			cmd: cmd,
 			args: args,
@@ -306,8 +206,6 @@ __      __   _  __   ____  __
 				}
 			}
 			cx.registerCallback("processCreated", handleProcessCreated);
-			cx.registerCallback("cpuActivity", cpuCallback);
-			cx.registerCallback("diskActivity", hddCallback);
 			registerNetworkLogin(cx, networkInterface);
 
 			term.scrollToBottom();
