@@ -36,6 +36,13 @@ To get started with our WebVM terminal games, follow these steps:
 1. Clone the repository:
    ```bash
    git clone https://github.com/your-repo/madani-webvm-terminal-games.git
+
+2. Run http server:
+   ```bash
+   nginx -c nginx.conf -p .
+3. Open your preferred browser (preferably Chrome) and type:
+   ```bash
+   localhost:8081
    
 ## Why Use WebVM for Gaming?
 
