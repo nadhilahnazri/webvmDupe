@@ -45,7 +45,7 @@ To get started with our WebVM terminal games, follow these steps:
    ```bash
    localhost:8081
    
-4. To start the game, type **start**.
+4. To start the game, type **start** on the terminal.
    
 ## Why Use WebVM for Gaming?
 
